@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        background-color: black;
+    }
+    .parent{
+        border: solid;
+        width: 500px;
+        height: 300px;
+        padding-left: 70px;
+        margin-left: 250px;
+        margin-top: 80px;
+        border-radius: 20px;
+        background-color: white;
+        
+    }
+    h1{
+        text-align: center;
+    }
+    .quizz{
+        margin-left: 80px;
+    }
+    .btn{
+      text-align: center;
+      
+    }
+    button{
+        width: 90px;
+        border-radius: 20px;
+    }
+    
+</style>
+<body>
+    <div class="parent">
+        <h1>Quizz App</h1>
+        <p id="timer"></p>
+        <div class="quizz">
+            <div>
+            <h2 id="qns"></h2>
+        </div>
+        <div class="q1">
+        <input type="radio" id="ans1" class="options" name="option">
+        <label id="opt1"></label>
+    </div>
+    <div class="q2">
+        <input type="radio" id="ans2" class="options" name="option">
+        <label id="opt2"></label>
+    </div>
+    <div class="q3">
+        <input type="radio" id="ans3" class="options" name="option">
+        <label id="opt3"></label>
+    </div>
+    <div class="q4">
+        <input type="radio" id="ans4" class="options" name="option">
+        <label id="opt4"></label>
+    </div>
+</div>
+  
+    <div class="btn">
+        <h2 class="myScore"></h2>
+        <Button onclick="next()" id="next">Next</Button>
+    </div>
+    </div>
+    <script>
+       let data = [
+        {
+            Q: "Q1:What is my nickname?",
+            a: "Bima",
+            b: "Chochi",
+            c: "Tappu",
+            d: "none",
+            ans: "ans2",
+        },
+        {
+            Q: "Q2:What is my age?",
+            a: "18",
+            b: "20",
+            c: "16",
+            d: "22",
+            ans: "ans2",
+        },
+        {
+            Q: "Q3:What is name of Last Prophet?",
+            a: "Hazrat Muhammad",
+            b: "Hazrat Ibrahim",
+            c: "Hazrat Adam",
+            d: "Hazrat Yousaf",
+            ans: "ans1",
+        },
+        {
+            Q: "Q4:How many pillars of islam?",
+            a: "5",
+            b: "6",
+            c: "8",
+            d: "10",
+            ans: "ans1",
+        },
+        {
+            Q: "Q5:What is the name of my brother?",
+            a: "Faizan",
+            b: "Hassam",
+            c: "Haider",
+            d:"Irfan",
+            ans:"ans2",
+        },
+        {
+            Q:"Q6:What is my fvrt fruit?",
+            a:"Mango",
+            b:"Apple",
+            c:"Litchi",
+            d:"I don't Know",
+            ans:"ans3",
+        },
+        {
+            Q:"Q7:Full Form of PAK",
+            a:"Austrlia",
+            b:"Islamabad",
+            c:"Pakistan",
+            d:"Russia",
+            ans:"ans3",
+        },
+        {
+            Q:"Q8:What is my fvrt game?",
+            a:"Hockey",
+            b:"Badminton",
+            c:"Cricket",
+            d:"Basketball",
+            ans:"ans2",
+        },
+        {
+            Q:"Q9:Which title gave to women in islam?",
+            a:"Islam ki shazadi",
+            b:"Woman",
+            c:"Malka",
+            d:"Nothing",
+            ans:"ans1",
+        },
+        {
+            Q:"Q10:Find out the Correct spelling",
+            a:"Themy",
+            b:"Thime",
+            c:"Thame",
+            d:"Theme",
+            ans:"ans4",
+        }
+       ]
+       let question = document.getElementById("qns");
+       let option1 = document.getElementById("opt1");
+       let option2 = document.getElementById("opt2");
+       let option3 = document.getElementById("opt3");
+       let option4 = document.getElementById("opt4");
+       let answers = document.querySelectorAll(".options")
+       let score=0;
+       let num =0;
+       let nextBtn = document.getElementById("next")
+       let myScore=document.querySelector(".myScore")
+    //    let time_element = document.getElementById("timer")
+    //    let current_question_number =0;
+    //    let time;
+    //    const total_time=10;
+    //    let sec = total_time;
+    //    function timer(){
+    //     time_element.innerHTML=sec;
+    //     sec--;
+    //     if(sec==0){
+    //         sec = total_time;
+    //         clearInterval(time);
+    //         current_question_number++;
+    //         shortQuestion();
+    //     }
+    //    }
+    //    function showQuestion(){
+    //     sec=total_time;
+    //     clearInterval(time);
+    //     timer();
+    //     time=setInterval(timer,1000);
+    //     document.querySelectorAll("input[name=opt]").forEach(option)
+    //     if(current_question_number>=quizQuestions.length){
+    //         goToResultPage();
+    //     }
+    //    }
+       question.innerHTML=data[num].Q;
+       option1.innerHTML=data[num].a;
+       option2.innerHTML=data[num].b;
+       option3.innerHTML=data[num].c;
+       option4.innerHTML=data[num].d;
+       function disSelect(){
+        answers.forEach((curElement)=>{
+            curElement.checked=false;
+        })
+       }
+      
+function next(){
+    let checkedAns =checkAns()
+    if(checkedAns == data[num].ans){
+       score++;
+    }
+    num++;
+    disSelect()
+    if(num < data.length){
+    question.innerHTML=data[num].Q;
+       option1.innerHTML=data[num].a;
+       option2.innerHTML=data[num].b;
+       option3.innerHTML=data[num].c;
+       option4.innerHTML=data[num].d;
+}else{
+ myScore.innerHTML=`You scored ${score}/${data.length} <br/>
+ <button onclick="location.reload()">Play Again</button>`;
+ nextBtn.style.display="none"
+}
+}
+function checkAns(){
+  let ans;
+  answers.forEach((curElement) =>{
+    if(curElement.checked){
+        ans = curElement.id;
+        console.log(ans);
+    }
+  })
+  return ans;
+}
+
+
+
+
+       
+    </script>
+</body>
+</html>

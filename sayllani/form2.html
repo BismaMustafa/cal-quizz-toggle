@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- login form -->
+     <div class="container">
+        <div class="form">
+                <h2>Login Form</h2>
+                <input type="email" placeholder="Email" id="email">
+                <input type="password" placeholder="Password" id="password">
+                <button id="submit-btn" onclick="submitInput()"><a href="./index.html">Submit</a></button>
+            </div>
+     </div>
+    <script src="./script.js">
+        const email = document.getElementById("email");
+const password = document.getElementById("password");
+const submit = document.getElementById("submit-btn");
+const login = document.getElementById("login");
+const logout = document.getElementById("logout");
+
+function submitInput() {
+  localStorage.setItem("email", email.value);
+  localStorage.setItem("password", password.value);
+}
+
+const isLoggedIn = localStorage.getItem("email") || localStorage.getItem("password");
+
+if (login && logout) {
+  login.style.display = isLoggedIn ? "none" : "block";
+  logout.style.display = isLoggedIn ? "block" : "none";
+}
+
+
+function logout_fun(){
+  localStorage.removeItem('email')
+  localStorage.removeItem('password')
+  window.location.href = './form2.html'
+
+}
+    </script>
+    
+</body>
+</html>

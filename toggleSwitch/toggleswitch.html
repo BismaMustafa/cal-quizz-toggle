@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .center{
+    margin-top: 200px;
+    margin-left: 370px;
+  }
+ 
+  input{
+    display: none;
+    
+  }
+  label{
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 100px;
+    background: black;
+    border-radius: 50px;
+    transition: background 300ms linear;
+    background-image: url(morning.jpg);
+    
+  }
+  label:before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 70px;
+    height: 80px;
+    background: white;
+    border-radius: 70px;
+    bottom: 8px;
+    top: 8px;
+    left: 8px;
+    transition: left 300ms linear;
+    /* background-image: url(night1.jpg); */
+  }
+  input:checked + label {
+    background:blue;
+    background-image: url(night.jpg);
+  
+  }
+  input:checked + label:before {
+    left: 120px;
+    
+  }
+</style>
+<body>
+  <div class="center">
+   
+    <input type="checkbox" id="toggle">
+    <label for="toggle"></label>
+    
+  </div>
+</body>
+</html>

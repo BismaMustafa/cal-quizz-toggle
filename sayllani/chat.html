@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+#navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+#login-status {
+  float: right;
+  padding-right: 20px;
+}
+
+#login-status-text {
+  font-weight: bold;
+}
+
+#login-form-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+#login-form h2 {
+  text-align: center;
+}
+
+#login-form label,
+#login-form input,
+#login-form button {
+  display: block;
+  margin: 10px 0;
+}
+
+#login-form button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+#login-form button:hover {
+  background-color: #555;
+}
+
+</style>
+<body>
+
+<nav id="navbar">
+  <div id="login-status">
+    <!-- This span will change based on login status -->
+    <span id="login-status-text">Not logged in</span>
+    <button id="login-logout-btn">Login</button>
+  </div>
+</nav>
+
+<div id="login-form-container">
+  <h2>Login Form</h2>
+  <form id="login-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    <br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+    <br>
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<script src="script.js">
+  
+  document.addEventListener('DOMContentLoaded', function() {
+  const loginForm = document.getElementById('login-form');
+  const loginLogoutBtn = document.getElementById('login-logout-btn');
+  const loginStatusText = document.getElementById('login-status-text');
+
+  // Check if user is already logged in
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+  // Update UI based on login status
+  updateLoginUI();
+
+  // Login form submit event listener
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Here you would typically validate the username and password
+    // For simplicity, let's just check if both fields are non-empty
+    if (username.trim() !== '' && password.trim() !== '') {
+      // Simulate successful login
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', username);
+      updateLoginUI();
+    } else {
+      alert('Please enter both username and password.');
+    }
+  });
+
+  // Function to update UI based on login status
+  function updateLoginUI() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    if (isLoggedIn) {
+      const username = localStorage.getItem('username');
+      loginStatusText.textContent = `Logged in as ${username}`;
+      loginLogoutBtn.textContent = 'Logout';
+      loginLogoutBtn.addEventListener('click', logout);
+    } else {
+      loginStatusText.textContent = 'Not logged in';
+      loginLogoutBtn.textContent = 'Login';
+      loginLogoutBtn.removeEventListener('click', logout);
+    }
+  }
+
+  // Logout function
+  function logout() {
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('username');
+    updateLoginUI();
+  }
+});
+
+
+</script>
+</body>
+</html>

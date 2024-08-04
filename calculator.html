@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+</head>
+<style>
+   button{
+    border-radius: 20px;
+    margin: 9px;
+    box-shadow: 2px 2px 2px white;
+    background :transparent;
+    text-decoration-color: white;
+    font-weight: 400px;
+    cursor: pointer;
+    color: white;
+    size: 30px;
+   }
+   .minus{
+    margin: 7px;
+}
+   .plus{
+    margin: 7px;
+   }
+   .equal{
+    margin: 7px;
+   }
+   input{
+    width: 180px;
+    height: 50px;
+    border-radius: 10px;
+    margin-left: 9px;
+    margin-top: 15px;
+    box-shadow: 2px 2px 2px black;
+    background: transparent;
+    text-align: right;
+    /* background-color: grey; */
+    border: none;
+    color: white;
+}
+input::placeholder{
+    color: white;
+}
+ .parent{
+    border: solid 1px;
+    border-radius: 20px;
+    margin-right: 600px;
+    margin-left: 400px;
+    margin-top: 150px;
+    align-items: center;
+    background-color:grey;
+    box-shadow: 2px 2px 2px;
+    padding-top: 30px;
+    padding-left: 50px;
+    
+   }
+   .equalbtn{
+    background-color:orange;
+   }
+   .operator{
+    color:white;
+    box-shadow: 2px 2px 2px black;
+    font-weight: 700px;
+   }
+   #point{
+    color: yellow;
+   }
+   #equal{
+    color: yellow;
+   }
+   #clear{
+    color: yellow;
+   }
+   #divide{
+    color: yellow;
+   }
+   #del{
+    color: yellow;
+   }
+   #mul{
+    color: yellow;
+   }
+   #min{
+    color: yellow;
+   }
+   #max{
+    color: yellow;
+   }
+  
+</style>
+<body>
+    <div class="parent">
+        <div class="zero">
+            <input type="value" placeholder="0" id="box" >
+        </div>
+        
+        <div class="del">
+            <button class="operator" id="clear">AC</button>
+            <button class="operator" id="divide">/</button>
+            <button class="operator" id="del">x</button>
+            <button class="operator" id="mul">*</button>
+            </div>
+            <div class="minus">
+                <button class="operator">7</button>
+                <button class="operator">8</button>
+                <button class="operator">9</button>
+                <button class="operator" id="min">-</button>
+    </div>
+    <div class="plus">
+        <button class="operator">4</button>
+        <button class="operator" >5</button>
+        <button class="operator">6</button>
+        <button class="operator" id="max">+</button>
+    </div>
+    <div class="equal">
+        <button class="operator">1</button>
+        <button class="operator">2</button>
+        <button class="operator">3</button>
+        
+        <button class="operator" id="point"><b>.</b></button>
+    
+    </div>
+    <div class="percentage">
+        <button class="operator">00</button>
+        <button class="operator">0</button>
+        <button class="operator" id="per">%</button>
+        <button class="operator" id="equal">=</button>
+    
+    </div>
+    
+    </div>
+    <script>
+    let string="";
+    let buttons = document.querySelectorAll('.operator');
+    Array.from(buttons).forEach((button) =>{
+button.addEventListener('click',(e)=>{
+    if(e.target.innerHTML == '='){
+        string = eval(string);
+        
+        document.querySelector('input').value = string;
+    
+    }
+    else if 
+    (e.target.innerHTML == 'AC'){
+        string = "";
+        
+        document.querySelector('input').value = string;
+    }
+    else if 
+    (e.target.innerHTML == 'x'){ string = string.substring(0,string.length-1);
+        
+        document.querySelector('input').value = string;
+    }
+    else{
+    console.log(e.target)
+    string = string + e.target.innerHTML;
+    document.querySelector('input').value = string;}
+})
+})
+</script>
+</body>
+</html>
+
+
+    
+    
+
